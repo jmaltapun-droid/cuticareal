@@ -1,0 +1,220 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Cutica Peluquería — design system
+ * Palette: bordo, crema, beige, amaderado, hueso
+ * Type: Fraunces (display) + Manrope (body)
+ */
+
+@theme inline {
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-3xl: 3rem;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-bordo: var(--bordo);
+  --color-bordo-deep: var(--bordo-deep);
+  --color-crema: var(--crema);
+  --color-beige: var(--beige);
+  --color-madera: var(--madera);
+  --color-hueso: var(--hueso);
+  --color-tinta: var(--tinta);
+  --color-whatsapp: var(--whatsapp);
+}
+
+:root {
+  /* Brand palette */
+  --hueso: oklch(0.982 0.006 80);          /* #FBF7F0 warm off-white */
+  --crema: oklch(0.955 0.02 82);           /* #F5EDE0 cream */
+  --beige: oklch(0.895 0.035 78);          /* #E8DCC4 warm beige */
+  --madera: oklch(0.5 0.075 45);           /* #8B5A3C walnut */
+  --bordo: oklch(0.38 0.13 20);            /* #6B1F2E bordeaux */
+  --bordo-deep: oklch(0.28 0.11 20);       /* deeper bordeaux */
+  --tinta: oklch(0.22 0.015 40);           /* #1F1915 soft black */
+  --whatsapp: oklch(0.65 0.15 150);
+
+  --radius: 0.875rem;
+
+  --background: var(--hueso);
+  --foreground: var(--tinta);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--tinta);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--tinta);
+  --primary: var(--bordo);
+  --primary-foreground: var(--hueso);
+  --secondary: var(--crema);
+  --secondary-foreground: var(--tinta);
+  --muted: var(--crema);
+  --muted-foreground: oklch(0.42 0.02 40);
+  --accent: var(--beige);
+  --accent-foreground: var(--tinta);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: var(--hueso);
+  --border: oklch(0.88 0.025 75);
+  --input: oklch(0.9 0.02 75);
+  --ring: var(--bordo);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 30, "WONK" 0;
+  }
+  h1 em, h2 em, h3 em, h4 em {
+    font-style: italic;
+    font-variation-settings: "SOFT" 30, "WONK" 0;
+  }
+  a, button, [role="button"], summary, label[for] { cursor: pointer; }
+  a:not(.no-underline-hover), button {
+    transition: color .18s ease, background-color .18s ease, transform .18s ease, opacity .18s ease;
+  }
+  ::selection { background: var(--bordo); color: var(--hueso); }
+}
+
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  max-width: 1240px;
+  @media (min-width: 768px) { padding-inline: 2rem; }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--bordo);
+  color: var(--hueso);
+  padding: 0.9rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  min-height: 48px;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+  box-shadow: 0 8px 24px -12px color-mix(in oklab, var(--bordo) 60%, transparent);
+}
+@utility btn-primary-hover {
+  background: var(--bordo-deep);
+  transform: translateY(-1px);
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--tinta);
+  padding: 0.9rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  min-height: 48px;
+  border: 1px solid color-mix(in oklab, var(--tinta) 20%, transparent);
+  transition: background .2s ease;
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--bordo);
+  font-weight: 600;
+}
+
+@utility section-y {
+  padding-block: 5rem;
+  @media (min-width: 768px) { padding-block: 7rem; }
+}
+
+/* The signature "C" — Cutica's distinctive off-page ribbon */
+@utility c-mark {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  border: 1.5px solid color-mix(in oklab, var(--bordo) 35%, transparent);
+  aspect-ratio: 1;
+}
+
+@keyframes strandDraw {
+  from { stroke-dashoffset: 400; }
+  to { stroke-dashoffset: 0; }
+}
+.strand path {
+  stroke-dasharray: 400;
+  animation: strandDraw 1.6s ease-out forwards;
+}
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise-in { animation: riseIn .9s ease-out both; }
+.rise-in-2 { animation: riseIn .9s ease-out .12s both; }
+.rise-in-3 { animation: riseIn .9s ease-out .24s both; }
+
+/* Scroll-reveal — secciones aparecen al entrar en viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(0.22, 1, 0.36, 1), transform .8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .08s; }
+.reveal-delay-2 { transition-delay: .16s; }
+.reveal-delay-3 { transition-delay: .24s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
